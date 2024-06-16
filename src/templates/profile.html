@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+</head>
+<body>
+    <header class="navbar-top">
+        <div class="title">
+            <h1>Profile</h1>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#message">
+                        <span class="icon-count">29</span>
+                        <i class="fa fa-envelope fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#notification">
+                        <span class="icon-count">59</span>
+                        <i class="fa fa-bell fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" id="back">
+                        <i class="fa fa-sign-out-alt fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <aside class="sidenav">
+        <div class="profile">
+            <img class="profileImage" src="https://via.placeholder.com/100" alt="Placeholder Image" width="100" height="100" />
+            <div class="name">User01</div>
+            <div class="job">Farmer</div>
+        </div>
+        <nav class="sidenav-url">
+            <ul>
+                <li><a href="#profile" class="active">Profile</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <section>
+            <h2>Identity</h2>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fa fa-pen fa-xs edit"></i>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Name</td>
+                                <td>:</td>
+                                <td>User01</td>
+                            </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td>:</td>
+                                <td>User01</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td>user01@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>:</td>
+                                <td>Bandung, Indonesia</td>
+                            </tr>
+                            <tr>
+                                <td>Hobbies</td>
+                                <td>:</td>
+                                <td>Diving, Reading Book</td>
+                            </tr>
+                            <tr>
+                                <td>Job</td>
+                                <td>:</td>
+                                <td>Fruit Specialist</td>
+                            </tr>
+                            <tr>
+                                <td>Vegetables</td>
+                                <td>:</td>
+                                <td>Grape, Mango</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button id="editProfileButton" class="edit-button">Edit Profile</button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Social Media</h2>
+            <div class="card">
+                <div class="card-body">
+                    <i class="fa fa-pen fa-xs edit"></i>
+                    <div class="social-media">
+                        <span class="fa-stack fa-sm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="fa-stack fa-sm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="fa-stack fa-sm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="fa-stack fa-sm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="fa-stack fa-sm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="fa-stack fa-sm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <span class="fa-stack fa-sm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- edit form -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Profile</h2>
+            <form id="editProfileForm">
+                <label for="editImage">Profile Image</label>
+                <input type="file" id="editImage" name="image" accept="image/*">
+            
+                <label for="editName">Name</label>
+                <input type="text" id="editName" name="name">
+            
+                <label for="editUsername">Username</label>
+                <input type="text" id="editUsername" name="username">
+            
+                <label for="editAddress">Address</label>
+                <input type="text" id="editAddress" name="address">
+            
+                <label for="editHobbies">Hobbies</label>
+                <input type="text" id="editHobbies" name="hobbies">
+            
+                <label for="editJob">Job</label>
+                <input type="text" id="editJob" name="job">
+            
+                <label for="editVegetables">Vegetables</label>
+                <input type="text" id="editVegetables" name="vegetables">
+            
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

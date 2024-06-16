@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout</title>
+</head>
+<body id="checkout-page">
+  <h1>Checkout</h1>
+  <table id="checkout-cart" class="shopping-cart">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total</th>
+      </tr>
+    </thead>
+    <tbody id="checkout-items"></tbody>
+  </table>
+  <div id="pricing">
+    <p id="sub-total"><strong>Total</strong>: <span id="stotal"></span></p>
+  </div>
+  <form action="order.html" method="post" id="checkout-order-form">
+    <fieldset id="fieldset-details">
+      <legend>Your Details</legend>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required /><br />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required /><br />
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" required /><br />
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" required /><br />
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" required /><br />
+      <label for="postal-code">Postal Code:</label>
+      <input type="text" id="postal-code" name="postal-code" required /><br />
+      <label for="country">Country:</label>
+      <select id="country" name="country" required>
+        <option value="">-- Select Country --</option>
+      </select><br />
+    </fieldset>
+    <div id="shipping-same">
+      Same as Billing <input type="checkbox" id="same-as-billing" value="" />
+    </div>
+    <fieldset id="fieldset-shipping">
+      <legend>Shipping</legend>
+      <label for="shipping-name">Name:</label>
+      <input type="text" id="shipping-name" name="shipping-name" required /><br />
+      <label for="shipping-address">Address:</label>
+      <input type="text" id="shipping-address" name="shipping-address" required /><br />
+      <label for="shipping-city">City:</label>
+      <input type="text" id="shipping-city" name="shipping-city" required /><br />
+      <label for="shipping-postal-code">Postal Code:</label>
+      <input type="text" id="shipping-postal-code" name="shipping-postal-code" required /><br />
+      <label for="shipping-country">Country:</label>
+      <select id="shipping-country" name="shipping-country" required>
+        <option value="">-- Select Country --</option>
+      </select><br />
+      <label for="shipping-phone">Phone:</label>
+      <input type="tel" id="shipping-phone" name="shipping-phone" required /><br />
+    </fieldset>
+    <fieldset id="fieldset-image">
+      <legend>Upload Image</legend>
+      <label for="image">Choose an image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required /><br />
+    </fieldset>
+    <p>
+      <input type="submit" id="submit-order" value="Submit" class="btn" />
+    </p>
+  </form>
+  <script src="checkout.js"></script>
+</body>
+</html>
