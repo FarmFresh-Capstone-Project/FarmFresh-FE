@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", async function () {
   try {
-    // Mengambil token dari local storage
     const token = localStorage.getItem("accessToken");
+    const checkoutId = localStorage.getItem("checkoutId");
 
-    // Mengambil data checkout dari server
-    const response = await fetch('http://localhost:3000/api/checkout', {
+    if (!checkoutId) {
+      throw new Error('checkoutId tidak tersedia di localStorage');
+    }
+
+    const response = await fetch(`http://localhost:3000/api/checkout/${checkoutId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -16,8 +19,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       throw new Error('Gagal mengambil data checkout dari server');
     }
 
-    const checkouts = await response.json();
-    const latestCheckout = checkouts[checkouts.length - 1];
+    const latestCheckout = await response.json();
+
+    let total = latestCheckout.total.replace("Rp", "").replace(".", "").replace(",", ".").trim();
+    total = `Rp${parseFloat(total).toLocaleString('id-ID')}`;
 
     const orderSummaryElement = document.getElementById("order-summary");
 
@@ -36,39 +41,35 @@ document.addEventListener("DOMContentLoaded", async function () {
       <p><strong>Shipping Postal Code:</strong> ${latestCheckout.shipping.postalCode}</p>
       <p><strong>Shipping Country:</strong> ${latestCheckout.shipping.country}</p>
       <p><strong>Shipping Phone:</strong> ${latestCheckout.shipping.phone}</p>
-      <p><strong>Total:</strong> ${latestCheckout.total}</p>
+      <p><strong>Total:</strong> ${total}</p>
     `;
 
-    // Membuat tombol konfirmasi pesanan
     const confirmButton = document.createElement("button");
     confirmButton.textContent = "Confirm Order";
     confirmButton.classList.add("confirm-button");
     orderSummaryElement.appendChild(confirmButton);
 
-    // Menambahkan event listener untuk tombol konfirmasi
-    confirmButton.addEventListener("click", function () {
-      // Menghapus data cart dan order dari local storage setelah konfirmasi
-      localStorage.removeItem("cart");
+    confirmButton.addEventListener("click", async function () {
+      try {
+        const deleteCartResponse = await fetch(`http://localhost:3000/api/carts`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
+        });
 
-      // Menyiapkan data untuk history
-      const history = {
-        customer: latestCheckout.customer,
-        shipping: latestCheckout.shipping,
-        items: latestCheckout.items,
-        total: latestCheckout.total,
-        date: new Date().toLocaleDateString("en-US"),
-      };
+        if (!deleteCartResponse.ok) {
+          throw new Error('Gagal menghapus data cart dari server');
+        }
 
-      // Mendapatkan riwayat pembelian yang sudah ada atau membuat yang baru
-      const existingHistory = JSON.parse(localStorage.getItem("history")) || [];
-      existingHistory.push(history);
+        localStorage.removeItem("checkoutId");
 
-      // Menyimpan kembali riwayat pembelian ke local storage
-      localStorage.setItem("history", JSON.stringify(existingHistory));
-
-      // Mengarahkan kembali pengguna ke halaman utama (index.html)
-      alert('Order berhasil dibuat');
-      // window.location.href = "index.html";
+        alert('Order berhasil dibuat');
+        window.location.href = "index.html";
+      } catch (error) {
+        console.error("Terjadi kesalahan saat mengonfirmasi order:", error.message);
+      }
     });
   } catch (error) {
     console.error("Terjadi kesalahan:", error.message);

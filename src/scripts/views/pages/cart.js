@@ -57,8 +57,8 @@ async function updateCartItemQuantity(inputElement) {
 }
 
 // Fungsi untuk menambahkan item ke keranjang
-async function addToCart(productId, productName) {
-  const quantityInput = document.querySelector(`#vegetable-item-${productId} .vegetable-item__content__quantity`);
+async function addToCart(productId, productName, buttonElement) {
+  const quantityInput = buttonElement.closest('.vegetable-item').querySelector('.vegetable-item__content__quantity');
   const quantity = parseInt(quantityInput.value, 10);
 
   try {

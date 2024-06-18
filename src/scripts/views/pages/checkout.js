@@ -147,8 +147,11 @@ async function submitCheckout(e) {
     });
 
     const result = await response.json();
+    console.log(result);
 
     if (response.ok) {
+      localStorage.setItem('checkoutId', result.checkout.checkoutId);
+      console.log('CheckoutId: ', result.checkout.checkoutId);
       alert('Checkout berhasil dibuat');
       window.location.href = 'order.html';
     } else {

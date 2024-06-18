@@ -13,7 +13,7 @@ const createVegetableItemTemplate = (vegetable) => `
           <h3>${vegetable.price}</h3>
           <p class="vegetable-item__content__description">${vegetable.description}</p>
           <input type="number" class="vegetable-item__content__quantity" value="1" min="1">
-          <button class="vegetable-item__content__button" onclick="addToCart('${vegetable.idProduct}', '${vegetable.name}')">Add to Cart</button>
+          <button class="vegetable-item__content__button" onclick="addToCart('${vegetable.idProduct}', '${vegetable.name}', this)">Add to Cart</button>
       </div>
   </div>
 `;
